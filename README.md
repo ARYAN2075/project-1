@@ -1,205 +1,230 @@
-# 🚀 DigiPratibha - AI-Powered Digital Student Portfolio Platform
+# DigiPratibha Backend Server
 
-[![Deploy Status](https://github.com/your-username/digipratibha/workflows/Deploy%20DigiPratibha%20to%20GitHub%20Pages/badge.svg)](https://github.com/your-username/digipratibha/actions)
-[![CI Status](https://github.com/your-username/digipratibha/workflows/CI%20-%20DigiPratibha/badge.svg)](https://github.com/your-username/digipratibha/actions)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+This directory contains the Node.js/Express backend server for DigiPratibha.
 
-DigiPratibha is a cutting-edge dual-role web application that empowers students to create stunning digital portfolios with AI assistance while providing institutions with comprehensive analytics dashboards and AI-powered insights about student skills and employability.
+## Quick Start
 
-## 🌟 Features
+```bash
+# Install dependencies
+npm install
 
-### For Students
-- **AI-Powered Portfolio Builder**: Drag-and-drop interface with intelligent suggestions
-- **Dynamic Skills Tracking**: Real-time skill assessment and recommendations
-- **Project Showcase**: Beautiful project galleries with impact metrics
-- **Career Guidance**: AI-driven career recommendations and industry insights
-- **Responsive Design**: Works seamlessly across all devices
+# Set up environment variables
+cp .env.example .env
 
-### For Institutions
-- **Comprehensive Analytics**: Deep insights into student performance and skills
-- **AI-Powered Insights**: Machine learning-driven analysis of student employability
-- **Department Management**: Track progress across different departments
-- **Industry Alignment**: Monitor how student skills align with market demands
-- **Real-time Dashboards**: Beautiful, interactive data visualizations
+# Initialize database
+npm run db:init
 
-## 🎨 Design System
+# Start development server
+npm run dev
 
-DigiPratibha features a modern, futuristic dark theme with:
-- **Neon Purple & Pink Gradients**: Eye-catching color scheme
-- **Glassmorphism Effects**: Modern UI with backdrop blur effects
-- **Responsive Design**: Mobile-first approach with seamless desktop experience
-- **Dark Theme**: Optimized for extended usage with reduced eye strain
-
-## 🚀 Tech Stack
-
-- **Frontend**: React 18, TypeScript, Tailwind CSS v4
-- **Backend**: Supabase (Database, Auth, Storage, Edge Functions)
-- **UI Components**: Radix UI, Shadcn/ui
-- **Charts**: Recharts for beautiful data visualizations
-- **Icons**: Lucide React
-- **Animations**: Motion (Framer Motion successor)
-- **Deployment**: GitHub Pages, Vercel, Netlify
-
-## 📦 Installation
-
-### Prerequisites
-- Node.js 18+ 
-- npm 8+
-- Git
-
-### Quick Start
-
-1. **Clone the repository**
-   ```bash
-   git clone https://github.com/your-username/digipratibha.git
-   cd digipratibha
-   ```
-
-2. **Install dependencies**
-   ```bash
-   npm install
-   ```
-
-3. **Set up environment variables**
-   ```bash
-   cp .env.example .env.local
-   ```
-   
-   Add your Supabase credentials:
-   ```env
-   VITE_SUPABASE_URL=your_supabase_url
-   VITE_SUPABASE_ANON_KEY=your_supabase_anon_key
-   ```
-
-4. **Set up the database**
-   
-   Visit the database setup page in your local app:
-   ```
-   http://localhost:3000/database-setup
-   ```
-   
-   Or manually run the SQL schema in your Supabase dashboard.
-
-5. **Start the development server**
-   ```bash
-   npm run dev
-   ```
-
-6. **Open your browser**
-   ```
-   http://localhost:3000
-   ```
-
-## 🗄️ Database Setup
-
-DigiPratibha uses Supabase as its backend. To set up the database:
-
-1. Create a new Supabase project at [supabase.com](https://supabase.com)
-2. Copy your project URL and anon key to your environment variables
-3. Run the database setup using one of these methods:
-
-### Option 1: Automated Setup (Recommended)
-- Navigate to `/database-setup` in your running application
-- Click "Test Connection" to verify your Supabase connection
-- Copy the provided SQL and run it in your Supabase SQL Editor
-
-### Option 2: Manual Setup
-- Open the Supabase SQL Editor
-- Copy the contents of `/database/supabase-schema.sql`
-- Execute the SQL commands to create all necessary tables
-
-## 🎯 Deployment
-
-DigiPratibha supports multiple deployment platforms:
-
-### GitHub Pages (Included)
-1. Fork this repository
-2. Update the repository URL in `package.json`
-3. Add Supabase environment variables to GitHub Secrets:
-   - `VITE_SUPABASE_URL`
-   - `VITE_SUPABASE_ANON_KEY`
-4. Push to main branch - deployment is automatic!
-
-### Vercel
-1. Connect your GitHub repository to Vercel
-2. Add environment variables in Vercel dashboard
-3. Deploy automatically on every push
-
-### Netlify
-1. Connect your repository to Netlify
-2. Set build command: `npm run build`
-3. Set publish directory: `dist`
-4. Add environment variables in Netlify settings
-
-## 🏗️ Project Structure
-
-```
-digipratibha/
-├── components/           # React components
-│   ├── admin/           # Admin and setup components
-│   ├── auth/            # Authentication components
-│   ├── institution/     # Institution dashboard
-│   ├── student/         # Student dashboard
-│   ├── shared/          # Shared components
-│   └── ui/              # UI component library
-├── lib/                 # Core libraries and services
-├── supabase/            # Supabase edge functions
-├── styles/              # Global styles and Tailwind config
-├── utils/               # Utility functions
-└── database/            # Database schema and migrations
+# Start production server
+npm start
 ```
 
-## 🔧 Development
+## Environment Variables
 
-### Available Scripts
+Create a `.env` file with the following variables:
 
-- `npm run dev` - Start development server
-- `npm run build` - Build for production
-- `npm run preview` - Preview production build
-- `npm run lint` - Run ESLint
-- `npm run lint:fix` - Fix ESLint errors
-- `npm run type-check` - Run TypeScript type checking
+```env
+# Server Configuration
+PORT=3001
+NODE_ENV=development
 
-### Development Guidelines
+# Database Configuration
+DATABASE_URL=postgresql://username:password@localhost:5432/digipratibha
+REDIS_URL=redis://localhost:6379
 
-1. **Code Style**: We use ESLint and Prettier for consistent code formatting
-2. **TypeScript**: Strict type checking is enforced
-3. **Components**: Use functional components with hooks
-4. **Styling**: Use Tailwind CSS with our custom design system
-5. **State Management**: React hooks and context for state management
+# Authentication
+JWT_SECRET=your-super-secret-jwt-key-change-in-production
+JWT_EXPIRES_IN=7d
 
-## 🤝 Contributing
+# AI Services
+OPENAI_API_KEY=your-openai-api-key
+AI_MODEL=gpt-4-turbo-preview
 
-We welcome contributions! Please see our [Contributing Guidelines](CONTRIBUTING.md) for details.
+# File Storage
+AWS_ACCESS_KEY_ID=your-aws-access-key
+AWS_SECRET_ACCESS_KEY=your-aws-secret-key
+AWS_BUCKET_NAME=digipratibha-uploads
+AWS_REGION=us-east-1
 
-1. Fork the repository
-2. Create your feature branch (`git checkout -b feature/amazing-feature`)
-3. Commit your changes (`git commit -m 'Add some amazing feature'`)
-4. Push to the branch (`git push origin feature/amazing-feature`)
-5. Open a Pull Request
+# Email Service
+SMTP_HOST=smtp.gmail.com
+SMTP_PORT=587
+SMTP_USER=your-email@gmail.com
+SMTP_PASS=your-app-password
 
-## 📄 License
+# External APIs
+GITHUB_CLIENT_ID=your-github-oauth-client-id
+GITHUB_CLIENT_SECRET=your-github-oauth-client-secret
+LINKEDIN_CLIENT_ID=your-linkedin-oauth-client-id
+LINKEDIN_CLIENT_SECRET=your-linkedin-oauth-client-secret
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+# Rate Limiting
+RATE_LIMIT_WINDOW_MS=900000
+RATE_LIMIT_MAX_REQUESTS=100
 
-## 🙏 Acknowledgments
+# Analytics
+GOOGLE_ANALYTICS_ID=your-ga-tracking-id
+MIXPANEL_TOKEN=your-mixpanel-token
+```
 
-- **Supabase** for the amazing backend-as-a-service platform
-- **Tailwind CSS** for the utility-first CSS framework
-- **Radix UI** for accessible, unstyled UI components
-- **Recharts** for beautiful and responsive charts
-- **Motion** for smooth animations
+## API Endpoints
 
-## 📞 Support
+### Authentication
+- `POST /api/auth/register` - User registration
+- `POST /api/auth/login` - User login
+- `POST /api/auth/logout` - User logout
+- `POST /api/auth/refresh` - Refresh JWT token
+- `POST /api/auth/forgot-password` - Request password reset
+- `POST /api/auth/reset-password` - Reset password
 
-- 📧 Email: support@digipratibha.com
-- 💬 Discord: [Join our community](https://discord.gg/digipratibha)
-- 📖 Documentation: [docs.digipratibha.com](https://docs.digipratibha.com)
-- 🐛 Issues: [GitHub Issues](https://github.com/your-username/digipratibha/issues)
+### Portfolio Management
+- `GET /api/portfolios/:userId` - Get user portfolio
+- `PUT /api/portfolios/:userId` - Update portfolio
+- `POST /api/portfolios/:userId/projects` - Create project
+- `PUT /api/portfolios/:userId/projects/:projectId` - Update project
+- `DELETE /api/portfolios/:userId/projects/:projectId` - Delete project
+- `POST /api/portfolios/:userId/skills` - Add skill
+- `PUT /api/portfolios/:userId/skills/:skillId` - Update skill
+- `DELETE /api/portfolios/:userId/skills/:skillId` - Remove skill
 
----
+### AI Assistant
+- `POST /api/ai/recommendations` - Get AI recommendations
+- `POST /api/ai/analyze/:userId` - Analyze portfolio
+- `POST /api/ai/chat` - Chat with AI assistant
+- `POST /api/ai/skills/suggest` - Get skill suggestions
 
-<div align="center">
-  <p>Built with ❤️ by the DigiPratibha Team</p>
-  <p>Empowering the next generation of digital professionals</p>
-</div>
+### Institution Analytics
+- `GET /api/analytics/institution/:institutionId` - Get institution analytics
+- `GET /api/analytics/institution/:institutionId/students` - Get students list
+- `GET /api/analytics/institution/:institutionId/departments` - Get department stats
+- `GET /api/analytics/trends` - Get industry trends
+
+### File Management
+- `POST /api/upload` - Upload files
+- `DELETE /api/upload/:fileId` - Delete file
+- `GET /api/upload/:fileId` - Get file info
+
+### Real-time Updates
+- `WS /api/ws/:userId` - WebSocket connection for real-time updates
+
+## Database Schema
+
+The application uses PostgreSQL with the following main tables:
+
+- `users` - User accounts (students and institutions)
+- `portfolios` - Student portfolios
+- `projects` - Portfolio projects
+- `skills` - User skills
+- `experience` - Work experience
+- `education` - Educational background
+- `achievements` - Awards and certifications
+- `ai_recommendations` - AI-generated recommendations
+- `notifications` - User notifications
+- `analytics_events` - Analytics tracking
+- `skill_trends` - Industry skill trends
+- `institution_settings` - Institution configurations
+
+## Development Commands
+
+```bash
+# Database operations
+npm run db:migrate        # Run database migrations
+npm run db:seed           # Seed database with sample data
+npm run db:reset          # Reset database (WARNING: destroys data)
+
+# Testing
+npm test                  # Run all tests
+npm run test:unit         # Run unit tests
+npm run test:integration  # Run integration tests
+npm run test:e2e          # Run end-to-end tests
+
+# Code quality
+npm run lint              # Run ESLint
+npm run format            # Format code with Prettier
+npm run type-check        # TypeScript type checking
+
+# Production
+npm run build             # Build for production
+npm run start:prod        # Start production server
+```
+
+## Deployment
+
+### Using Docker
+
+```bash
+# Build Docker image
+docker build -t digipratibha-backend .
+
+# Run with Docker Compose
+docker-compose up -d
+```
+
+### Using PM2
+
+```bash
+# Install PM2 globally
+npm install -g pm2
+
+# Start with PM2
+pm2 start ecosystem.config.js
+
+# Monitor
+pm2 monit
+
+# View logs
+pm2 logs
+```
+
+### Environment-specific Configurations
+
+- **Development**: Uses local PostgreSQL and Redis
+- **Staging**: Uses cloud databases with staging configurations
+- **Production**: Uses production databases with SSL, monitoring, and backups
+
+## Security Features
+
+- JWT-based authentication with refresh tokens
+- Rate limiting on all endpoints
+- Input validation and sanitization
+- SQL injection protection
+- XSS protection
+- CORS configuration
+- Helmet.js security headers
+- Password hashing with bcrypt
+- API key management for external services
+
+## Monitoring and Logging
+
+- Winston logger with multiple transports
+- Request/response logging
+- Error tracking with Sentry
+- Performance monitoring with New Relic
+- Health check endpoints
+- Metrics collection for Prometheus
+
+## AI Integration
+
+The backend integrates with multiple AI services:
+
+- **OpenAI GPT-4**: For portfolio analysis and recommendations
+- **Custom ML Models**: For skill trend analysis
+- **Natural Language Processing**: For resume parsing
+- **Computer Vision**: For project image analysis
+
+## Data Privacy
+
+- GDPR compliance for EU users
+- Data anonymization for analytics
+- Secure file storage with encryption
+- User data export functionality
+- Right to be forgotten implementation
+
+## Support
+
+For technical support or questions:
+- Create an issue in the GitHub repository
+- Email: support@digipratibha.com
+- Documentation: https://docs.digipratibha.com
